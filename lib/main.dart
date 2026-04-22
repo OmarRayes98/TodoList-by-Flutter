@@ -1,101 +1,11 @@
 import 'package:flutter/material.dart';
-import 'package:provider/provider.dart';
-import 'package:todo_list/helper/consts.dart';
-import 'package:todo_list/provider/dark_mode.dart';
-import 'package:todo_list/provider/tasks_provider.dart';
-// import 'dart:developer';
-
-import 'package:todo_list/screens/splash_screen.dart';
+import 'package:todo_list/app/my_app.dart';
 
 void main() {
   runApp(const MyApp());
 }
 
-class MyApp extends StatelessWidget {
-  const MyApp({super.key});
 
-  // This widget is the root of your application.
-  @override
-  Widget build(BuildContext context) {
-    return MultiProvider(
-      providers: [
-        ChangeNotifierProvider<TasksProvider>(create: (_) => TasksProvider()),
-        ChangeNotifierProvider<DarkModeProvider>(
-          create: (_) => DarkModeProvider()..initializeDarkMode(),
-        ),
-      ],
-      child: Consumer<DarkModeProvider>(
-        builder: (context, mode, child) {
-          return MaterialApp(
-            debugShowCheckedModeBanner: false,
-            title: 'Todo List Demo',
-            theme: ThemeData(
-              scaffoldBackgroundColor: (mode.isDark
-                  ? darkPrimaryColor
-                  : lightPrimaryColor),
-
-              tabBarTheme: TabBarThemeData(
-                labelStyle: TextStyle(
-                  color: mode.isDark ? Colors.white : primaryColor,
-                ),
-                indicatorColor: mode.isDark ? Colors.white : primaryColor,
-              ),
-              dialogTheme: DialogThemeData(
-                backgroundColor: mode.isDark ? Colors.black : Colors.white,
-              ),
-              inputDecorationTheme: InputDecorationTheme(
-                labelStyle: TextStyle(
-                  color: mode.isDark ? Colors.white : Colors.black,
-                ),
-              ),
-              textTheme: TextTheme(
-                bodySmall: TextStyle(
-                  color: mode.isDark ? Colors.white : Colors.black,
-                ),
-                bodyMedium: TextStyle(
-                  color: mode.isDark ? Colors.white : Colors.black,
-                ),
-                bodyLarge: TextStyle(
-                  color: mode.isDark ? Colors.white : Colors.black,
-                ),
-                titleSmall: TextStyle(
-                  color: mode.isDark ? Colors.white : Colors.black,
-                ),
-                titleMedium: TextStyle(
-                  color: mode.isDark ? Colors.white : Colors.black,
-                ),
-                titleLarge: TextStyle(
-                  color: mode.isDark ? Colors.white : Colors.black,
-                ),
-                displaySmall: TextStyle(
-                  color: mode.isDark ? Colors.white : Colors.black,
-                ),
-                displayMedium: TextStyle(
-                  color: mode.isDark ? Colors.white : Colors.black,
-                ),
-                displayLarge: TextStyle(
-                  color: mode.isDark ? Colors.white : Colors.black,
-                ),
-              ),
-              appBarTheme: AppBarTheme(
-                backgroundColor: mode.isDark ? darkPrimaryColor : lightPrimaryColor,
-                titleTextStyle: TextStyle(
-                  color: mode.isDark ? Colors.white : Colors.black,
-                  fontSize: 22,
-                ),
-
-              ),
-              colorScheme: ColorScheme.fromSeed(seedColor: primaryColor),
-            ),
-            home: const SplashScreen(),
-
-            // home: const MyHomePage(title: 'First App Tester'),
-          );
-        },
-      ),
-    );
-  }
-}
 
 // class MyHomePage extends StatefulWidget {
 //   const MyHomePage({super.key, required this.title});
