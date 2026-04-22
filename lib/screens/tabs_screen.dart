@@ -4,6 +4,7 @@ import 'package:todo_list/models/task_model.dart';
 import 'package:todo_list/provider/dark_mode.dart';
 import 'package:todo_list/provider/tasks_provider.dart';
 import 'package:todo_list/widgets/adding_dialog.dart';
+import 'package:todo_list/widgets/delete_dialog.dart';
 import 'package:todo_list/widgets/task_card.dart';
 
 class TabsScreens extends StatefulWidget {
@@ -117,38 +118,6 @@ class _TabsScreensState extends State<TabsScreens> {
         );
       },
       separatorBuilder: (_, __) => const SizedBox(height: 16),
-    );
-  }
-}
-
-class DeleteDialog extends StatelessWidget {
-  const DeleteDialog({super.key, required this.tm});
-
-  final TaskModel tm;
-
-  @override
-  Widget build(BuildContext context) {
-    return AlertDialog(
-      title: const Text("Delete Task"),
-      content: const Text("Are you sure you want to delete this task?"),
-      actions: [
-        ElevatedButton(
-          style: ButtonStyle(
-            shape: WidgetStatePropertyAll(
-              RoundedRectangleBorder(borderRadius: BorderRadius.circular(10)),
-            ),
-          ),
-          onPressed: () {
-            Provider.of<TasksProvider>(context, listen: false).deleteTask(tm);
-            Navigator.pop(context);
-          },
-          child: const Text("Delete"),
-        ),
-        TextButton(
-          onPressed: () => Navigator.pop(context),
-          child: const Text("Cancel"),
-        ),
-      ],
     );
   }
 }

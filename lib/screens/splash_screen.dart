@@ -30,11 +30,11 @@ class _SplashScreenState extends State<SplashScreen> {
             );
           },
         )
-        .fadeIn(duration: const Duration(milliseconds: 1000))
-        // .fadeOut(
-        //   delay: const Duration(seconds: 2),
-        //   duration: const Duration(milliseconds: 500),
-        // ),
+        .fadeIn(duration: const Duration(milliseconds: 600))
+        .fadeOut(
+          delay: const Duration(seconds: 2),
+          duration: const Duration(milliseconds: 600),
+        ),
       ),
     );
   }
